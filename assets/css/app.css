@@ -1,0 +1,516 @@
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 15px;
+    height: auto !important;
+    width: auto !important;
+}
+.text-ubuntu-condensed-bold {
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-weight: 700;
+}
+.text-ubuntu-bold {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+}
+.text-dm-sans-bold {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+}
+.text-ubuntu-condensed-regular {
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-weight: 400;
+}
+.text-ubuntu-regular {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+}
+.text-dm-sans-regular {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+}
+.custom-bg-primary-light {
+    background-image: linear-gradient(120deg, #4a00e0, dodgerblue,#4a00e0) !important;
+    background-image: -webkit-linear-gradient(120deg, #4a00e0, dodgerblue, #4a00e0) !important;
+    background-image: -moz-linear-gradient(120deg, #4a00e0, dodgerblue,#4a00e0) !important;
+    background-image: -ms-linear-gradient(120deg, #4a00e0, dodgerblue,#4a00e0) !important;
+}
+.custom-bg-primary {
+    background-image: linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -webkit-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -moz-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -ms-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+}
+.custom-bg-success {
+    background-image: linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+    background-image: -webkit-linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+    background-image: -moz-linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+    background-image: -ms-linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+}
+.custom-bg-danger {
+    background-image: linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+    background-image: -webkit-linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+    background-image: -moz-linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+    background-image: -ms-linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+}
+.custom-bg-info {
+    background-image: linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+    background-image: -webkit-linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+    background-image: -moz-linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+    background-image: -ms-linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+}
+.custom-bg-warning {
+    background-image: linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+    background-image: -webkit-linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+    background-image: -moz-linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+    background-image: -ms-linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+}
+.custom-bg-dark {
+    background-image: linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #000000, #434343,#000000) !important;
+}
+.custom-bg-lighter-dark {
+    background-image: linear-gradient(120deg, #222222, #434343,#222222) !important;
+    background-image: -webkit-linear-gradient(120deg, #222222, #434343,#222222) !important;
+    background-image: -moz-linear-gradient(120deg, #222222, #434343,#222222) !important;
+    background-image: -ms-linear-gradient(120deg, #222222, #434343,#222222) !important;
+}
+.gradient-text-primary {
+    background-image: linear-gradient(120deg, dodgerblue, #4a00e0) !important;
+    background-image: -webkit-linear-gradient(120deg, dodgerblue, #4a00e0) !important;
+    background-image: -moz-linear-gradient(120deg, dodgerblue, #4a00e0) !important;
+    background-image: -ms-linear-gradient(120deg, dodgerblue, #4a00e0) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text;
+    color: transparent;
+}
+.gradient-text-primary-light {
+    background-image: linear-gradient(120deg, dodgerblue, #4a00e0, dodgerblue) !important;
+    background-image: -webkit-linear-gradient(120deg, dodgerblue, #4a00e0, dodgerblue) !important;
+    background-image: -moz-linear-gradient(120deg, dodgerblue, #4a00e0, dodgerblue) !important;
+    background-image: -ms-linear-gradient(120deg, dodgerblue, #4a00e0, dodgerblue) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text;
+    color: transparent;
+}
+.gradient-text-white {
+    background-image: linear-gradient(120deg, #8790ab, #eef2f3) !important;
+    background-image: -webkit-linear-gradient(120deg, #8790ab, #eef2f3) !important;
+    background-image: -moz-linear-gradient(120deg, #8790ab, #eef2f3) !important;
+    background-image: -ms-linear-gradient(120deg, #8790ab, #eef2f3) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text;
+    color: transparent;
+}
+.gradient-text-success {
+    background-image: linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+    background-image: -webkit-linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+    background-image: -moz-linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+    background-image: -ms-linear-gradient(120deg, #11998e, #38ef7d, #11998e) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text-info {
+    background-image: linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+    background-image: -webkit-linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+    background-image: -moz-linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+    background-image: -ms-linear-gradient(120deg, #00c6ff, #0072ff, #00c6ff) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text-warning {
+    background-image: linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+    background-image: -webkit-linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+    background-image: -moz-linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+    background-image: -ms-linear-gradient(120deg, #f12711, #f5af19, #f12711) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text-danger {
+    background-image: linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+    background-image: -webkit-linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+    background-image: -moz-linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+    background-image: -ms-linear-gradient(120deg, #dd2476, #ff512f, #dd2476) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+table.table {
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+    overflow-y: auto;
+    height: 60vh !important;
+    width: 100%;
+    display: block;
+}
+
+table.table::-webkit-scrollbar {
+    width: 12px;
+}
+table.table::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+}
+table.table::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -webkit-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -moz-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -ms-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+table.table::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(120deg,#6666ff,#ff6666, #6666ff) !important;
+    background-image: -webkit-linear-gradient(120deg,#6666ff,#ff6666, #6666ff) !important;
+    background-image: -moz-linear-gradient(120deg,#6666ff,#ff6666, #6666ff) !important;
+    background-image: -ms-linear-gradient(120deg,#6666ff,#ff6666, #6666ff) !important;
+}
+
+.preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    height: 250px;
+    overflow: hidden;
+    background-image: radial-gradient(circle, #000 20%, #777 100%) !important;
+    background-image: -webkit-radial-gradient(circle, #000 20%, #777 100%) !important;
+    background-image: -moz-radial-gradient(circle, #000 20%, #777 100%) !important;
+    background-image: -ms-radial-gradient(circle, #000 20%, #777 100%) !important;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.preview img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.preview:hover {
+    border-color: #007BFF;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    display: inline-block;
+    margin-top: 10px;
+    background-image: linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -webkit-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -moz-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    background-image: -ms-linear-gradient(120deg, #4a00e0, #8e2de2,#4a00e0) !important;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "DMSans", sans-serif;
+    font-weight: 700;
+}
+
+#register-bio {
+    height: 300px;
+    font-size: 16px;
+    color: #fff;
+    background-image: linear-gradient(120deg, #222222, #434343,#222222) !important;
+    background-image: -webkit-linear-gradient(120deg, #222222, #434343,#222222) !important;
+    background-image: -moz-linear-gradient(120deg, #222222, #434343,#222222) !important;
+    background-image: -ms-linear-gradient(120deg, #222222, #434343,#222222) !important;
+    padding: 15px;
+    border: 2px solid deeppink;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    font-family: "DMSans", sans-serif;
+    font-weight: 500;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: none;
+}
+
+.ql-toolbar {
+    background-image: linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    color: dodgerblue;
+}
+
+.ql-container {
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+}
+#toolbar {
+    border: 1px solid deeppink;
+    color: dodgerblue !important;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    background-image: linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    padding: 10px;
+}
+.ql-toolbar .ql-picker-label {
+    padding: 5px;
+}
+#toolbar select:hover,
+#toolbar button:hover {
+    color: white !important;
+    background-image: linear-gradient(120deg, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #434343,#000000) !important;
+}
+#toolbar select svg path,
+#toolbar button svg path,
+#toolbar select svg rect,
+#toolbar button svg rect,
+#toolbar select svg circle,
+#toolbar button svg circle,
+#toolbar select svg polygon,
+#toolbar button svg polygon,
+#toolbar select svg line,
+#toolbar button svg line,
+#toolbar button svg line.ql-stroke,
+#toolbar select svg polyline,
+#toolbar button svg polyline,
+#toolbar span.ql-picker-label svg path {
+    fill: dodgerblue !important;
+    background-color: #333 !important;
+}
+#toolbar select:focus,
+#toolbar button:focus {
+    color: white !important;
+    background-image: linear-gradient(120deg, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #434343,#000000) !important;
+}
+#toolbar select:active,
+#toolbar select:focus {
+    color: white !important;
+    background-image: linear-gradient(120deg, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #434343,#000000) !important;
+}
+span.ql-picker-label,
+#toolbar select option {
+    color: dodgerblue !important;
+    background-color: #333 !important;
+}
+#toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > rect,
+#toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > line,
+#toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > polyline {
+    fill: dodgerblue !important;
+    color: dodgerblue !important;
+    background-color: #333 !important;
+}
+#toolbar span,
+#toolbar select,
+#toolbar button {
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-image: linear-gradient(135deg, #000000, #333333) !important;
+    background-image: -webkit-linear-gradient(135deg, #000000, #333333) !important;
+    background-image: -moz-linear-gradient(135deg, #000000, #333333) !important;
+    background-image: -ms-linear-gradient(135deg, #000000, #333333) !important;
+    color: dodgerblue !important;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+.ql-font {
+    color: dodgerblue !important;
+
+}
+.ql-size {
+    color: dodgerblue !important;
+
+}
+.ql-bold {
+    color: dodgerblue !important;
+
+}
+.ql-italic {
+    color: dodgerblue !important;
+
+}
+.ql-underline {
+    color: dodgerblue !important;
+
+}
+.ql-strike {
+    color: dodgerblue !important;
+
+}
+.ql-blockquote {
+    color: dodgerblue !important;
+
+}
+.ql-code-break {
+    color: dodgerblue !important;
+
+}
+.ql-link {
+    color: dodgerblue !important;
+
+}
+.ql-image {
+    color: dodgerblue !important;
+
+}
+.ql-video {
+    color: dodgerblue !important;
+
+}
+.ql-clean {
+    color: dodgerblue !important;
+
+}
+.ql-color {
+    color: dodgerblue !important;
+
+}
+.ql-background {
+    color: dodgerblue !important;
+
+}
+.ql-align {
+    color: dodgerblue !important;
+
+}
+input::placeholder {
+    color: whitesmoke !important;
+    font-weight: bold !important;
+    font-family: "Ubuntu Condensed", sans-serif !important;
+}
+
+input:-ms-input-placeholder {
+    color: whitesmoke !important;
+    font-weight: bold !important;
+    font-family: "Ubuntu Condensed", sans-serif !important;
+}
+
+input::-webkit-input-placeholder {
+    color: whitesmoke !important;
+    font-weight: bold !important;
+    font-family: "Ubuntu Condensed", sans-serif !important;
+}
+
+.input-group {
+    position: relative;
+    width: 100% !important;
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+.input-group label {
+    display: block;
+    width: 100%;
+}
+.form-group input,
+.input-group input {
+    display: block;
+    padding: 10px 40px 10px 10px;
+    font-family: "DMSans", sans-serif;
+    font-weight: bold;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.circle-12-rounded {
+    padding: 0.22rem 0.5rem;
+    margin-right: 0.1rem;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+.input-group i.toggle-password {
+    position: absolute;
+    top: 73%;
+    color: #4CAF50;
+    left: 90%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 100;
+}
+input {
+    background-image: linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    color: #fff;
+    font-family: "DMSans", sans-serif;
+    font-weight: bold;
+    transition: background-color 5000s ease-in-out 0s;
+    width: 100% !important;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #1e1e1e inset !important;
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.checkmark {
+    position: absolute;
+    top: -25px;
+    right: 10px;
+    font-size: 18px;
+    display: none;
+    color: #4CAF50;
+}
+input[type="file"] {
+    display: none;
+}
+#navbar.active {
+    background-image: linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    color: #fff;
+    font-family: "DMSans", sans-serif;
+    font-weight: bold;
+    transition: background-color 5000s ease-in-out 0s;
+    width: 100% !important;
+}
+#navbar {
+    background: transparent;
+    color: #fff;
+    font-family: "DMSans", sans-serif;
+    font-weight: bold;
+    transition: background-color 5000s ease-in-out 0s;
+    width: 100% !important;
+}
+#section {
+    min-height: 60vh;
+}
+.copyright-div {
+    margin-top: 60vh !important;
+}
