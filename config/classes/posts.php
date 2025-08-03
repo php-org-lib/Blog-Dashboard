@@ -1,13 +1,16 @@
 <?php
-require_once("includes/config/db_config.php");
-class Posts {
+class Posts
+{
     private $pdo;
     private $table = "posts";
-    public function __construct(PDO $pdo) {
+
+    public function __construct(PDO $pdo)
+    {
         $this->pdo = $pdo;
     }
 
-    public function getPosts(): array {
+    public function getPosts(): array
+    {
         $sql = "SELECT 
                     posts.*, 
                     users.full_name AS author_name,
@@ -24,7 +27,16 @@ class Posts {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getPostById(int $postId) {
+    public function getThreeRecentPosts()
+    {
+        $sql = "SELECT * FROM posts ORDER BY date_created DESC LIMIT 3";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPostById(int $postId)
+    {
         $sql = "SELECT 
                     posts.*, 
                     users.full_name AS author_name,
@@ -41,5 +53,25 @@ class Posts {
         $post = $stmt->fetch(PDO::FETCH_ASSOC);
         return $post ?: null;
     }
+    public function createPost($user_id, $title, $content) {
+        $sql = "INSERT INTO posts (user_id, title, content, date_created) VALUES (:user_id, :title, :content, NOW())";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            ':user_id' => $user_id,
+            ':title' => $title,
+            ':content' => $content
+        ]);
+    }
 
+    public function deletePost(int $postId): bool
+    {
+        try {
+            $stmt = $this->pdo->prepare("DELETE FROM posts WHERE id = :postId");
+            $stmt->execute([$postId]);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Delete User Error: " . $e->getMessage());
+            return false;
+        }
+    }
 }

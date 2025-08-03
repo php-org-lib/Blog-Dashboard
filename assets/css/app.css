@@ -5,6 +5,40 @@ body {
     height: auto !important;
     width: auto !important;
 }
+#sidenav-collapse-main > ul > li:nth-child(1n) {
+    transition: all 0.3s ease-in-out;
+}
+#sidenav-collapse-main > ul > li:nth-child(1n) a:hover {
+    background-color: rgba(77, 77, 77, 0.5);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+#AccountNav > ul > li,
+#AccountNav > ul > li:nth-child(1n),
+#ProfileNav > ul > li:nth-child(1n),
+#PagesNav > ul > li:nth-child(1n) {
+    transition: background-color 0.3s ease-in-out;
+}
+#AccountNav > ul > li:nth-child(1n) a,
+#ProfileNav > ul > li:nth-child(1n) a,
+#PagesNav > ul > li:nth-child(1n) a {
+    transition: color 0.3s ease-in-out;
+}
+#AccountNav > ul > li:nth-child(1n) a:hover,
+#ProfileNav > ul > li:nth-child(1n) a:hover,
+#PagesNav > ul > li:nth-child(1n) a:hover {
+    color: dodgerblue;
+    font-weight: bold;
+    cursor: pointer;
+}
+#AccountNav > ul > li:hover,
+#AccountNav > ul > li:nth-child(1n):hover,
+#ProfileNav > ul > li:nth-child(1n):hover,
+#PagesNav > ul > li:nth-child(1n):hover {
+    background-color: rgba(77, 77, 77, 0.5);
+    cursor: pointer;
+}
 .text-ubuntu-condensed-bold {
     font-family: "Ubuntu Condensed", sans-serif;
     font-weight: 700;
@@ -77,6 +111,22 @@ body {
     background-image: -moz-linear-gradient(120deg, #222222, #434343,#222222) !important;
     background-image: -ms-linear-gradient(120deg, #222222, #434343,#222222) !important;
 }
+.custom-bg-primary-secondary {
+    background-image: linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+    background-image: -webkit-linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+    background-image: -moz-linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+    background-image: -ms-linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+}
+.gradient-text-primary-secondary {
+    background-image: linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+    background-image: -webkit-linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+    background-image: -moz-linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+    background-image: -ms-linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text;
+    color: transparent;
+}
 .gradient-text-primary {
     background-image: linear-gradient(120deg, dodgerblue, #4a00e0) !important;
     background-image: -webkit-linear-gradient(120deg, dodgerblue, #4a00e0) !important;
@@ -97,11 +147,21 @@ body {
     background-clip: text;
     color: transparent;
 }
+.gradient-text-info-light {
+    background-image: linear-gradient(120deg, dodgerblue, skyblue, #eef2f3) !important;
+    background-image: -webkit-linear-gradient(120deg, dodgerblue, skyblue, #eef2f3) !important;
+    background-image: -moz-linear-gradient(120deg, dodgerblue, skyblue, #eef2f3) !important;
+    background-image: -ms-linear-gradient(120deg, dodgerblue, skyblue, #eef2f3) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text;
+    color: transparent;
+}
 .gradient-text-white {
-    background-image: linear-gradient(120deg, #8790ab, #eef2f3) !important;
-    background-image: -webkit-linear-gradient(120deg, #8790ab, #eef2f3) !important;
-    background-image: -moz-linear-gradient(120deg, #8790ab, #eef2f3) !important;
-    background-image: -ms-linear-gradient(120deg, #8790ab, #eef2f3) !important;
+    background-image: linear-gradient(120deg, #eef2f3, #8790ab, #eef2f3) !important;
+    background-image: -webkit-linear-gradient(120deg, #eef2f3, #8790ab, #eef2f3) !important;
+    background-image: -moz-linear-gradient(120deg, #eef2f3, #8790ab, #eef2f3) !important;
+    background-image: -ms-linear-gradient(120deg, #eef2f3, #8790ab, #eef2f3) !important;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent !important;
     background-clip: text;
@@ -150,11 +210,12 @@ body {
     background-clip: text;
     color: transparent;
 }
+
 table.table {
     scroll-behavior: smooth;
     overflow-x: scroll;
     overflow-y: auto;
-    height: 60vh !important;
+    min-height: 40vh !important;
     width: 100%;
     display: block;
 }
@@ -181,7 +242,9 @@ table.table::-webkit-scrollbar-thumb:hover {
     background-image: -moz-linear-gradient(120deg,#6666ff,#ff6666, #6666ff) !important;
     background-image: -ms-linear-gradient(120deg,#6666ff,#ff6666, #6666ff) !important;
 }
-
+table.table > tbody > tr {
+    padding: 20px 10px !important;
+}
 .preview {
     display: flex;
     justify-content: center;
@@ -209,6 +272,11 @@ table.table::-webkit-scrollbar-thumb:hover {
 input[type="file"] {
     display: none;
 }
+input {
+    font-family: "DMSans", sans-serif !important;
+    font-weight: 700 !important;
+    color: white !important;
+}
 .custom-file-upload {
     display: inline-block;
     margin-top: 10px;
@@ -226,7 +294,7 @@ input[type="file"] {
     font-family: "DMSans", sans-serif;
     font-weight: 700;
 }
-
+#post-content,
 #register-bio {
     height: 300px;
     font-size: 16px;
@@ -236,7 +304,7 @@ input[type="file"] {
     background-image: -moz-linear-gradient(120deg, #222222, #434343,#222222) !important;
     background-image: -ms-linear-gradient(120deg, #222222, #434343,#222222) !important;
     padding: 15px;
-    border: 2px solid deeppink;
+    border: 2px solid dodgerblue;
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -263,8 +331,9 @@ input[type="file"] {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
 }
+#toolbar1,
 #toolbar {
-    border: 1px solid deeppink;
+    border: 1px solid dodgerblue;
     color: dodgerblue !important;
     border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -278,6 +347,56 @@ input[type="file"] {
 .ql-toolbar .ql-picker-label {
     padding: 5px;
 }
+
+.ql-toolbar.ql-snow {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    color: #eee;
+}
+
+.ql-toolbar button,
+.ql-toolbar .ql-picker {
+    color: #eee;
+    fill: #eee;
+    background-color: transparent;
+    border: none;
+}
+
+.ql-toolbar button:hover,
+.ql-toolbar .ql-picker-label:hover,
+.ql-toolbar .ql-picker-options {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ql-toolbar .ql-picker-options {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    color: #eee;
+}
+
+
+.ql-toolbar svg {
+    stroke: #ccc;
+}
+
+.ql-toolbar button.ql-active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ql-editor::before {
+    color: #fff;
+}
+
+.ql-toolbar.ql-snow .ql-picker-label:hover,
+.ql-toolbar.ql-snow .ql-picker-options {
+    background-image: linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -webkit-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -moz-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    background-image: -ms-linear-gradient(120deg, #000000, #434343,#000000) !important;
+    color: dodgerblue !important;
+}
+#toolbar1 select:hover,
+#toolbar1 button:hover,
 #toolbar select:hover,
 #toolbar button:hover {
     color: white !important;
@@ -286,6 +405,20 @@ input[type="file"] {
     background-image: -moz-linear-gradient(120deg, #434343,#000000) !important;
     background-image: -ms-linear-gradient(120deg, #434343,#000000) !important;
 }
+#toolbar1 select svg path,
+#toolbar1 button svg path,
+#toolbar1 select svg rect,
+#toolbar1 button svg rect,
+#toolbar1 select svg circle,
+#toolbar1 button svg circle,
+#toolbar1 select svg polygon,
+#toolbar1 button svg polygon,
+#toolbar1 select svg line,
+#toolbar1 button svg line,
+#toolbar1 button svg line.ql-stroke,
+#toolbar1 select svg polyline,
+#toolbar1 button svg polyline,
+#toolbar1 span.ql-picker-label svg path,
 #toolbar select svg path,
 #toolbar button svg path,
 #toolbar select svg rect,
@@ -303,12 +436,16 @@ input[type="file"] {
     fill: dodgerblue !important;
     background-color: #333 !important;
 }
+#toolbar1 select:focus,
+#toolbar1 button:focus,
 #toolbar select:focus,
 #toolbar button:focus {
     color: white !important;
     background-image: linear-gradient(120deg, #434343,#000000) !important;
     background-image: -webkit-linear-gradient(120deg, #434343,#000000) !important;
 }
+#toolbar1 select:active,
+#toolbar1 select:focus,
 #toolbar select:active,
 #toolbar select:focus {
     color: white !important;
@@ -317,11 +454,36 @@ input[type="file"] {
     background-image: -moz-linear-gradient(120deg, #434343,#000000) !important;
     background-image: -ms-linear-gradient(120deg, #434343,#000000) !important;
 }
+#toolbar1 select option,
 span.ql-picker-label,
 #toolbar select option {
     color: dodgerblue !important;
     background-color: #333 !important;
 }
+
+#toolbar1 > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > g,
+#toolbar1 > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > polyline,
+#toolbar1 > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > line,
+#toolbar1 > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > g > polygon:nth-child(1n),
+#toolbar1 > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > g > rect:nth-child(1n),
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker.ql-expanded,
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker.ql-expanded span:nth-child(1n),
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker > span.ql-picker-label > svg,
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker > span.ql-picker-label > svg > line:before,
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker > span.ql-picker-label > svg > polyline:before,
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > rect,
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > line,
+#toolbar1 > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > polyline,
+#toolbar > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > g,
+#toolbar > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > polyline,
+#toolbar > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > line,
+#toolbar > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > g > polygon:nth-child(1n),
+#toolbar > span.ql-background.ql-picker.ql-color-picker > span.ql-picker-label > svg > g > rect:nth-child(1n),
+#toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded,
+#toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded span:nth-child(1n),
+#toolbar > span.ql-color.ql-picker.ql-color-picker > span.ql-picker-label > svg,
+#toolbar > span.ql-color.ql-picker.ql-color-picker > span.ql-picker-label > svg > line:before,
+#toolbar > span.ql-color.ql-picker.ql-color-picker > span.ql-picker-label > svg > polyline:before,
 #toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > rect,
 #toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > line,
 #toolbar > span.ql-color.ql-picker.ql-color-picker.ql-expanded > span.ql-picker-label > svg > polyline {
@@ -329,6 +491,9 @@ span.ql-picker-label,
     color: dodgerblue !important;
     background-color: #333 !important;
 }
+#toolbar1 span,
+#toolbar1 select,
+#toolbar1 button,
 #toolbar span,
 #toolbar select,
 #toolbar button {
@@ -345,65 +510,50 @@ span.ql-picker-label,
     -moz-border-radius: 6px;
     transition: all 0.3s ease-in-out;
 }
-.ql-font {
-    color: dodgerblue !important;
-
-}
+.ql-code-break,
+.ql-line,
+.ql-image,
+.ql-clean,
+.ql-color,
+.ql-background,
+.ql-align,
+.ql-header,
+.ql-code,
+.ql-code-block,
+.ql-list,
+.ql-video,
+.ql-strike,
+.ql-blockquote,
+.ql-underline,
+.ql-italic,
+.ql-bold,
+.ql-font,
 .ql-size {
     color: dodgerblue !important;
-
+    font-size: 14px !important;
 }
-.ql-bold {
-    color: dodgerblue !important;
 
+.ql-editor::before {
+    color: #fff;
 }
-.ql-italic {
-    color: dodgerblue !important;
 
+#toolbar1 > span:nth-child(1) > span.ql-size.ql-picker > span.ql-picker-label,
+#toolbar1 > span:nth-child(1) > span.ql-font.ql-picker > span.ql-picker-label,
+#toolbar1 > span:nth-child(1) > span.ql-size.ql-picker > span.ql-picker-label:before,
+#toolbar1 > span:nth-child(1) > span.ql-font.ql-picker > span.ql-picker-label:before,
+#toolbar > span:nth-child(1) > span.ql-size.ql-picker > span.ql-picker-label,
+#toolbar > span:nth-child(1) > span.ql-font.ql-picker > span.ql-picker-label,
+#toolbar > span:nth-child(1) > span.ql-size.ql-picker > span.ql-picker-label:before,
+#toolbar > span:nth-child(1) > span.ql-font.ql-picker > span.ql-picker-label:before {
+    position: absolute !important;
+    bottom: 1.5% !important;
 }
-.ql-underline {
-    color: dodgerblue !important;
-
-}
-.ql-strike {
-    color: dodgerblue !important;
-
-}
-.ql-blockquote {
-    color: dodgerblue !important;
-
-}
-.ql-code-break {
-    color: dodgerblue !important;
-
-}
-.ql-link {
-    color: dodgerblue !important;
-
-}
-.ql-image {
-    color: dodgerblue !important;
-
-}
-.ql-video {
-    color: dodgerblue !important;
-
-}
-.ql-clean {
-    color: dodgerblue !important;
-
-}
-.ql-color {
-    color: dodgerblue !important;
-
-}
-.ql-background {
-    color: dodgerblue !important;
-
-}
-.ql-align {
-    color: dodgerblue !important;
-
+.ql-toolbar.ql-snow .ql-picker-label:hover,
+.ql-toolbar.ql-snow .ql-picker-options {
+    background-image: linear-gradient(135deg, #000000, #333333) !important;
+    background-image: -webkit-linear-gradient(135deg, #000000, #333333) !important;
+    background-image: -moz-linear-gradient(135deg, #000000, #333333) !important;
+    background-image: -ms-linear-gradient(135deg, #000000, #333333) !important;
 }
 input::placeholder {
     color: whitesmoke !important;
@@ -513,4 +663,137 @@ input[type="file"] {
 }
 .copyright-div {
     margin-top: 60vh !important;
+}
+
+
+
+.ql-toolbar.ql-snow {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 6px 6px 0 0;
+}
+
+.ql-container.ql-snow {
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+}
+.ql-editor::placeholder {
+    color: #fff !important;
+    font-weight: bold;
+    font-family: "Ubuntu Condensed", sans-serif;
+}
+.ql-editor {
+    background-image: radial-gradient(circle, #000000, #333333) !important;
+    background-image: -webkit-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -moz-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -ms-radial-gradient(circle, #000000, #333333) !important;
+    color: #fff !important;
+    height: 350px;
+    padding: 15px;
+    border: 2px solid dodgerblue;
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-size: 16px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    overflow-y: auto !important;
+}
+
+.ql-toolbar button,
+.ql-toolbar .ql-picker-label,
+.ql-toolbar .ql-picker-item {
+    color: dodgerblue !important;
+    fill: dodgerblue !important;
+    stroke: dodgerblue !important;
+}
+
+.ql-toolbar button:hover,
+.ql-toolbar .ql-picker-label:hover,
+.ql-toolbar .ql-picker-options {
+    background-image: radial-gradient(circle, #000000, #333333) !important;
+    background-image: -webkit-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -moz-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -ms-radial-gradient(circle, #000000, #333333) !important;
+}
+
+.ql-toolbar .ql-picker-options {
+    background-image: radial-gradient(circle, #000000, #333333) !important;
+    background-image: -webkit-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -moz-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -ms-radial-gradient(circle, #000000, #333333) !important;
+    color: dodgerblue;
+    border: 1px solid #444;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: dodgerblue;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #1a1a1a;
+    color: dodgerblue;
+    font-weight: 600;
+}
+
+.accordion-body {
+    background-image: radial-gradient(circle, #000000, #333333) !important;
+    background-image: -webkit-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -moz-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -ms-radial-gradient(circle, #000000, #333333) !important;
+    border-top: 1px solid dodgerblue;
+    border-radius: 0 0 0.5rem 0.5rem;
+    color: #fff;
+}
+
+.tabs-left {
+    border-bottom: none;
+    border-right: 1px solid #ddd;
+}
+
+.tabs-left>li {
+    float: none;
+    margin:0;
+
+}
+
+.tabs-left>li.active>a,
+.tabs-left>li.active>a:hover,
+.tabs-left>li.active>a:focus {
+    border-bottom-color: #ddd;
+    border-right-color: transparent;
+    background-image: radial-gradient(circle, #000000, #333333) !important;
+    background-image: -webkit-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -moz-radial-gradient(circle, #000000, #333333) !important;
+    background-image: -ms-radial-gradient(circle, #000000, #333333) !important;
+    border:none;
+    border-radius:6px;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    margin:0;
+}
+.nav-tabs>li>a:hover {
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+}
+.tabs-left>li.active>a::after{content: "";
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+
+    border-left: 10px solid #f90;
+    display: block;
+    width: 0;}
+
+select option {
+    color: #fff !important;
+    font-family: "Ubuntu Condensed", sans-serif !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+}
+select {
+    cursor: pointer !important;
 }

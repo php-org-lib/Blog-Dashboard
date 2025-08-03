@@ -1,9 +1,7 @@
 <?php
 global $pdo;
-require("includes/config/db_config.php");
-require("includes/config/functions.php");
-require("classes/users.php");
-require("classes/posts.php");
+
+require_once __DIR__ . '/autoload.php';
 include("includes/head.php");
 if(!isset($_SESSION['user_id'])) {
     redirect('login.php');
@@ -25,7 +23,7 @@ $post = $posts->getPostById($postId);
                         <h2 class="text-dm-sans-bold gradient-text-info"><?= htmlspecialchars($post['title'] ?? ''); ?></h2>
                     </div>
                     <div class="card-body p-3">
-                        <p class="text-white text-ubuntu-condensed-regular"><?= htmlspecialchars($post['content'] ?? ''); ?></p>
+                        <p class="text-white text-ubuntu-condensed-regular ql-viewer"><?= nl2br($post['content'] ?? ''); ?></p>
                     </div>
                     <div class="card-footer p-1">
                         <p class="gradient-text-info text-ubuntu-condensed-bold">

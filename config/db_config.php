@@ -38,6 +38,17 @@
             return $e->getMessage();
         }
     }
-
+function runSQL(string $sql, $arguments = null) {
+    try {
+        $this->beginTransaction();
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($arguments);
+        $this->commit();
+        return $stmt;
+    } catch (PDOException $e) {
+        $this->rollBack();
+        die("Database error: " . $e->getMessage());
+    }
+}
 
 ?>

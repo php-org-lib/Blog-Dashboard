@@ -1,6 +1,5 @@
 <?php
-
-require_once(__DIR__ . "/../includes/config/db_config.php");
+require_once(__DIR__ . "/../config/db_config.php");
 global $pdo;
 if(isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -31,11 +30,17 @@ if(isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link id="pagestyle" href="../assets/css/material-dashboard.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.core.css" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu+Condensed&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
 </head>
 
 <body class="g-sidenav-show custom-bg-dark">
@@ -52,7 +57,7 @@ if(isset($_SESSION['user_id'])) {
         <ul class="navbar-nav">
             <?php if(isset($_SESSION['user_id'])) { ?>
             <li class="nav-item mb-2 mt-0">
-                <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-gradient text-primary text-dm-sans-bold" aria-controls="ProfileNav" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link gradient-text-info text-dm-sans-bold" aria-controls="ProfileNav" role="button" aria-expanded="false">
                     <img src="../assets/img/uploads/users/<?= htmlspecialchars($us['avatar'] ?? ''); ?>" class="avatar" alt="<?= htmlspecialchars($us['username'] ?? ''); ?>'s Avatar">
                     <span class="nav-link-text ms-2 ps-1"><?= htmlspecialchars($us['email'] ?? ''); ?></span>
                 </a>
@@ -60,33 +65,33 @@ if(isset($_SESSION['user_id'])) {
                 <div class="collapse" id="ProfileNav" style="">
                     <ul class="nav ">
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../profile.php?id=<?= htmlspecialchars($us['id']); ?>">
-                                <i class="fa-solid fa-address-card gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../profile.php?id=<?= htmlspecialchars($us['id']); ?>">
+                                <i class="fa-solid fa-address-card gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Profile </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../user_list.php">
-                                <i class="fa-solid fa-users gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../user_list.php">
+                                <i class="fa-solid fa-users gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> User List </span>
                             </a>
                         </li>
                         <hr class="horizontal collapse-horizontal mt-1 mb-1">
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../blog.php">
-                                <i class="fa-solid fa-blog gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../blog.php">
+                                <i class="fa-solid fa-blog gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Blog </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../user_posts.php?id=<?= htmlspecialchars($us['id']); ?>">
-                                <i class="fa-solid fa-file-lines gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../user_posts.php?id=<?= htmlspecialchars($us['id']); ?>">
+                                <i class="fa-solid fa-file-lines gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Your Posts </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../create_post.php">
-                                <i class="fa-solid fa-plus gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../create_post.php">
+                                <i class="fa-solid fa-plus gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Add Post </span>
                             </a>
                         </li>
@@ -95,53 +100,53 @@ if(isset($_SESSION['user_id'])) {
             </li>
             <?php } ?>
             <li class="nav-item mb-2 mt-0">
-                <a data-bs-toggle="collapse" href="#PagesNav" class="nav-link text-gradient text-primary text-dm-sans-bold" aria-controls="PagesNav" role="button" aria-expanded="false">
-                    <i class="fa-solid fa-list"></i>
-                    <span class="sidenav-normal  ms-3  ps-1 text-white text-dm-sans-bold">Pages</span>
+                <a data-bs-toggle="collapse" href="#PagesNav" class="nav-link gradient-text-info text-dm-sans-bold" aria-controls="PagesNav" role="button" aria-expanded="false">
+                    <i class="fa-solid fa-list gradient-text-primary-secondary"></i>
+                    <span class="sidenav-normal  ms-3  ps-1 text-dm-sans-bold">Pages</span>
                 </a>
                 <div class="collapse" id="PagesNav" style="">
                     <ul class="nav ">
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../index.php">
-                                <i class="fa-solid fa-house-chimney gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../index.php">
+                                <i class="fa-solid fa-house-chimney gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Home </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../about.php">
-                                <i class="fa-solid fa-circle-info gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../about.php">
+                                <i class="fa-solid fa-circle-info gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> About </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../faq.php">
-                                <i class="fa-solid fa-circle-question gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../faq.php">
+                                <i class="fa-solid fa-circle-question gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> FAQ </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../privacy_policy.php">
-                                <i class="fa-solid fa-shield-halved gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../privacy_policy.php">
+                                <i class="fa-solid fa-shield-halved gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Privacy Policy </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../terms_and_conditions.php">
-                                <i class="fa-solid fa-scale-balanced gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../terms_and_conditions.php">
+                                <i class="fa-solid fa-scale-balanced gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Terms and Conditions </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link gradient-text-info" href="../contact.php">
-                                <i class="fa-solid fa-address-book gradient-text-warning"></i>
+                            <a class="nav-link gradient-text-white" href="../contact.php">
+                                <i class="fa-solid fa-address-book gradient-text-primary-secondary"></i>
                                 <span class="sidenav-normal  ms-3  ps-1"> Contact </span>
                             </a>
                         </li>
                     </ul>
                 </div>
             <li class="nav-item mb-2 mt-0">
-                <a data-bs-toggle="collapse" href="#AccountNav" class="nav-link text-gradient text-primary text-dm-sans-bold" aria-controls="AccountNav" role="button" aria-expanded="false">
-                    <i class="fa-solid fa-list"></i>
+                <a data-bs-toggle="collapse" href="#AccountNav" class="nav-link gradient-text-info text-dm-sans-bold" aria-controls="AccountNav" role="button" aria-expanded="false">
+                    <i class="fa-solid fa-list gradient-text-primary-secondary"></i>
                     <span class="sidenav-normal  ms-3  ps-1">Account</span>
                 </a>
                 <div class="collapse" id="AccountNav" style="">

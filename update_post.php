@@ -1,9 +1,6 @@
 <?php
 global $pdo;
-require('includes/config/db_config.php');
-require('includes/config/functions.php');
-require('classes/users.php');
-require('classes/posts.php');
+require_once __DIR__ . '/autoload.php';
 include('includes/head.php');
 if(!isset($_SESSION['user_id'])) {
     redirect('login.php');

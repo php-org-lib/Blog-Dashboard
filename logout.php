@@ -1,8 +1,6 @@
 <?php
 global $pdo;
-include("includes/config/db_config.php");
-include("includes/config/functions.php");
-include("classes/users.php");
+require_once __DIR__ . '/autoload.php';
 include("includes/head.php");
 $user = new Users($pdo);
 $user->logout();

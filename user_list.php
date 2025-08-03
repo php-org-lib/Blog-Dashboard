@@ -1,10 +1,10 @@
 <?php
 global $pdo;
-require("includes/config/db_config.php");
-require("includes/config/functions.php");
-require("classes/users.php");
+require_once __DIR__ . '/autoload.php';
 include("includes/head.php");
-
+$errors = [];
+$success = '';
+$message = '';
 $users = new Users($pdo);
 $user_list = $users->getUsers();
 ?>
@@ -26,9 +26,29 @@ $user_list = $users->getUsers();
                         </div>
                     </div>
                 </div>
-                <div class="card-body px-0 pb-0">
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-hover table-responsive custom-bg-lighter-dark" id="products-list">
+                <div class="card-body p-3">
+                    <div class="row-mt-1 mb-1">
+                        <div class="col-12 col-md-10 offset-md-1">
+                            <?php if (!empty($errors)) { ?>
+                                <div class="alert custom-bg-danger mt-2 mb-3 p-2">
+                                    <?php foreach ($errors as $error) { ?>
+                                        <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                            <?php if (!empty($success)) { ?>
+                                <div class="alert custom-bg-success mt-2 mb-3 p-2">
+                                    <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
+                                </div>
+                            <?php } ?>
+                            <?php if (!empty($message)) { ?>
+                                <div class="alert custom-bg-info mt-2 mb-3 p-2">
+                                    <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                        <table class="table table-borderless table-hover table-responsive custom-bg-lighter-dark table-responsive-md" id="products-list">
                             <thead class="thead-primary text-white">
                             <tr>
                                 <th class="text-gradient text-primary text-bold">ID</th>
@@ -45,8 +65,8 @@ $user_list = $users->getUsers();
                             <?php if(count($user_list) > 0) { ?>
                                 <?php foreach($user_list as $user) {?>
                                     <tr>
-                                        <td class="text-sm text-white"><?= htmlspecialchars($user['id'] ?? ''); ?></td>
-                                        <td>
+                                        <td class="text-sm gradient-text-white p-1 mt-1"><?= htmlspecialchars($user['id'] ?? ''); ?></td>
+                                        <td class="p-1 mt-1">
                                             <div class="d-flex px-2 py-1">
                                                 <div>
                                                     <img src="./assets/img/uploads/users/<?= htmlspecialchars($user['avatar'] ?? ''); ?>" class="avatar avatar-sm me-3" alt="<?= htmlspecialchars($user['username'] ?? ''); ?>'s Avatar">
@@ -57,11 +77,11 @@ $user_list = $users->getUsers();
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-sm text-white"><?= htmlspecialchars($user['dob'] ?? ''); ?></td>
-                                        <td class="text-sm text-white"><?= htmlspecialchars($user['role'] ?? ''); ?></td>
-                                        <td class="text-sm text-white"><?= htmlspecialchars($user['username'] ?? ''); ?></td>
+                                        <td class="text-sm text-white p-1 mt-1"><?= htmlspecialchars($user['dob'] ?? ''); ?></td>
+                                        <td class="text-sm text-white p-1 mt-1"><?= htmlspecialchars($user['role'] ?? ''); ?></td>
+                                        <td class="text-sm text-white p-1 mt-1"><?= htmlspecialchars($user['username'] ?? ''); ?></td>
 
-                                        <td>
+                                        <td class="p-1 mt-1">
                                             <div class="d-block px-2 py-1">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -80,26 +100,29 @@ $user_list = $users->getUsers();
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-sm text-white"><?= truncate_words($user['bio'], 5); ?></td>
-                                        <td class="text-sm d-inline">
-                                            <a href="profile.php?id=<?= htmlspecialchars($user['id']); ?>" data-bs-toggle="tooltip" data-bs-original-title="Preview user with the id:<?= htmlspecialchars($user['id']); ?>" class="btn btn-sm circle-12-rounded bg-gradient-info">
-                                                <i class="fa-solid fa-list text-white text-sm"></i>
-                                            </a>
-                                            <a href="update_user.php?id=<?= htmlspecialchars($user['id']); ?>" class="btn btn-sm circle-12-rounded bg-gradient-warning" data-bs-toggle="tooltip" data-bs-original-title="Edit user with the id: <?= htmlspecialchars($user['id']); ?>">
-                                                <i class="fa-solid fa-pen-to-square text-white text-sm"></i>
-                                            </a>
-                                            <form action="includes/process_delete_user.php" method="POST"  class="d-inline">
-                                                <input type="hidden" name="user_id" value="<?= htmlspecialchars($user['id']); ?>">
-                                                <button type="submit" class="btn btn-sm circle-12-rounded bg-gradient-danger" data-bs-toggle="tooltip" data-bs-original-title="Delete user with the id: <?= htmlspecialchars($user['id']); ?>">
-                                                    <i class="fa-solid fa-trash text-white text-sm"></i>
-                                                </button>
-                                            </form>
+                                        <td class="text-sm text-white p-1 mt-1"><?= truncate_words(htmlspecialchars($user['bio'] ?? ''), 5); ?></td>
+                                        <td class="d-inline p-1 mt-1">
+                                            <div class="btn-group-sm">
+                                                <a href="profile.php?id=<?= htmlspecialchars($user['id']); ?>" data-bs-toggle="tooltip" data-bs-original-title="Preview user with the id:<?= htmlspecialchars($user['id']); ?>" class="btn circle-12-rounded custom-bg-info">
+                                                    <i class="fa-solid fa-list text-white text-sm"></i>
+                                                </a>
+                                                <a href="update_user.php?id=<?= htmlspecialchars($user['id']); ?>" class="btn circle-12-rounded custom-bg-warning" data-bs-toggle="tooltip" data-bs-original-title="Edit user with the id: <?= htmlspecialchars($user['id']); ?>">
+                                                    <i class="fa-solid fa-pen-to-square text-white text-sm"></i>
+                                                </a>
+                                                <form action="includes/process_delete_user.php" method="POST"  class="d-inline">
+                                                    <input type="hidden" name="user_id" value="<?= htmlspecialchars($user['id']); ?>">
+                                                    <button type="submit" class="btn circle-12-rounded custom-bg-danger" data-bs-toggle="tooltip" data-bs-original-title="Delete user with the id: <?= htmlspecialchars($user['id']); ?>">
+                                                        <i class="fa-solid fa-trash text-white text-sm"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+
                                         </td>
                                     </tr>
                                 <?php } ?>
                             <?php } else { ?>
                                 <tr>
-                                    <td>
+                                    <td class="my-1 mt-1">
                                         <div class="custom-bg-warning">
                                             <p class="text-ubuntu-regular text-white">No users have been added to the system yet.</p>
                                         </div>
@@ -108,7 +131,7 @@ $user_list = $users->getUsers();
                             <?php } ?>
                             </tbody>
                         </table>
-                    </div>
+
                 </div>
             </div>
         </div>

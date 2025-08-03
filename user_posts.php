@@ -1,7 +1,6 @@
 <?php
-include("includes/config/db_config.php");
-include("includes/config/functions.php");
-include("classes/users.php");
+global $pdo;
+require_once __DIR__ . '/autoload.php';
 include("includes/head.php");
 ?>
     <section id="section">

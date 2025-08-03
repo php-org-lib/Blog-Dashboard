@@ -1,11 +1,11 @@
 <?php
 global $pdo;
-require("includes/config/db_config.php");
-require("includes/config/functions.php");
-require("classes/users.php");
+require_once __DIR__ . '/autoload.php';
 include("includes/head.php");
-$users = new Users($pdo);
 $message = "";
+$success = "";
+$errors[] = [];
+$users = new Users($pdo);
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $full_name = trim($_POST['full_name']);
     $email = trim($_POST['email']);
@@ -17,10 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date_created = date('Y-m-d H:i:s');
 
     if($password !== $confirm_password) {
+        $errors[] = "Passwords do not match";
         error_log("Passwords do not match");
         die("Passwords do not match");
     }
     if($users->getUserByEmail($email)) {
+        $errors[] = "Email already exists";
         error_log("Email already exists");
         die("Email already exists");
     }
@@ -47,14 +49,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $date_created
     );
     if($success) {
-        $message = "User created successfully";
-        echo '<script>window.location.href = "login.php";</script>';
-        echo "<script>alert('$message');</script>";
-        exit;
+        $success = "User created successfully";
+        redirect('login.php');
     } else {
-        $message = "Failed to create user";
+        $errors[] = "Failed to create user";
         error_log("Failed to create user");
-        echo "<script>alert('$message');</script>";
         die("Failed to create user");
     }
 }
@@ -65,6 +64,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col-12 col-md-10 offset-md-1">
             <div class="card custom-bg-dark shadow-xl shadow-primary border-1 border-primary">
                 <div class="card-body p-3">
+                    <div class="row-mt-1 mb-1">
+                        <div class="col-12 col-md-10 offset-md-1">
+                            <?php if (!empty($errors)) { ?>
+                                <div class="alert custom-bg-danger mt-2 mb-3 p-2">
+                                    <?php foreach ($errors as $error) { ?>
+                                        <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                            <?php if (!empty($success)) { ?>
+                                <div class="alert custom-bg-success mt-2 mb-3 p-2">
+                                    <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
+                                </div>
+                            <?php } ?>
+                            <?php if (!empty($message)) { ?>
+                                <div class="alert custom-bg-info mt-2 mb-3 p-2">
+                                    <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
                     <form action="" class="form" method="POST" enctype="multipart/form-data" onsubmit="syncQuillContent()">
                         <div class="row m-2 p-1">
                             <div class="col-12 col-md-6">
@@ -205,7 +225,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     Font.whitelist = ['sans-serif', 'serif', 'monospace'];
     Quill.register(Font, true);
 
-    const quill = new Quill('#register-bio', {
+    let quillRegisterBio = new Quill('#register-bio', {
         theme: 'snow',
         modules: {
             toolbar: '#toolbar'
@@ -217,7 +237,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     });
     function syncQuillContent() {
         const content = document.querySelector('#hidden-content');
-        content.value = quill.root.innerHTML;
+        content.value = quillRegisterBio.root.innerHTML;
     }
 
 </script>

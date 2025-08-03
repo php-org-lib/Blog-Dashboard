@@ -9,5 +9,5 @@ function truncate_words($text, $limit = 20, $ending = '...') {
         return implode(' ', $words);
     }
     $truncated = array_slice($words, 0, $limit);
-    return implode(' ', $truncated) . $ending;
+    return sprintf("%s%s", implode(' ', $truncated), $ending);
 }
