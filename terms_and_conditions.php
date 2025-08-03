@@ -1,7 +1,5 @@
 <?php
-require("config/db_config.php");
-require("config/functions.php");
-require("config/classes/users.php");
+require_once __DIR__ . '/autoload.php';
 include("includes/head.php");
 ?>
     <section id="section">
