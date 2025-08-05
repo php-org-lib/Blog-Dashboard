@@ -61,5 +61,57 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const alerts = document.querySelectorAll('.alert.auto-dismiss');
+
+        alerts.forEach(alert => {
+            const timeout = setTimeout(() => {
+                fadeOutAndRemove(alert);
+            }, 5000);
+
+            const closeBtn = alert.querySelector('.close-alert');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    clearTimeout(timeout);
+                    fadeOutAndRemove(alert);
+                });
+            }
+        });
+
+        function fadeOutAndRemove(element) {
+            element.style.opacity = '0';
+            setTimeout(() => {
+                if (element && element.parentNode) {
+                    element.parentNode.removeChild(element);
+                }
+            }, 500);
+        }
+    });
+</script>
+<script>
+    function updateNotificationBadge() {
+        fetch('includes/get_notifications_count.php')
+            .then(res => res.json())
+            .then(data => {
+                const badge = document.querySelector('#notification-badge');
+                if (data.count > 0) {
+                    if (!badge) {
+                        const newBadge = document.createElement('span');
+                        newBadge.id = 'notification-badge';
+                        newBadge.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger';
+                        newBadge.textContent = data.count;
+                        document.querySelector('.nav-link[href="notifications.php"]').appendChild(newBadge);
+                    } else {
+                        badge.textContent = data.count;
+                    }
+                } else if (badge) {
+                    badge.remove();
+                }
+            });
+    }
+    setInterval(updateNotificationBadge, 15000);
+    window.addEventListener('DOMContentLoaded', updateNotificationBadge);
+</script>
 </body>
 </html>

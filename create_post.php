@@ -37,23 +37,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="card-body p-3">
                         <form class="form" action="" method="POST" onsubmit="return preparePost();">
-                            <?php if (!empty($errors)) { ?>
-                                <div class="alert custom-bg-danger mt-2 mb-3 p-2">
-                                    <?php foreach ($errors as $error) { ?>
-                                        <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                            <div class="row-mt-1 mb-1">
+                                <div class="col-12 col-md-10 offset-md-1">
+                                    <?php if (!empty($errors)) { ?>
+                                        <div class="alert auto-dismiss custom-bg-danger mt-2 mb-3 p-2" role="alert">
+                                            <?php foreach ($errors as $error) { ?>
+                                                <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                                                <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>
+                                    <?php if (!empty($success)) { ?>
+                                        <div class="alert auto-dismiss custom-bg-success mt-2 mb-3 p-2" role="alert">
+                                            <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
+                                            <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
+                                        </div>
+                                    <?php } ?>
+                                    <?php if (!empty($message)) { ?>
+                                        <div class="alert alert-dismiss custom-bg-info mt-2 mb-3 p-2" role="alert">
+                                            <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
+                                            <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
+                                        </div>
                                     <?php } ?>
                                 </div>
-                            <?php } ?>
-                            <?php if (!empty($success)) { ?>
-                                <div class="alert custom-bg-success mt-2 mb-3 p-2">
-                                    <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
-                                </div>
-                            <?php } ?>
-                            <?php if (!empty($message)) { ?>
-                                <div class="alert custom-bg-info mt-2 mb-3 p-2">
-                                    <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
-                                </div>
-                            <?php } ?>
+                            </div>
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="form-group">

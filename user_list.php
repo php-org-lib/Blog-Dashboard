@@ -6,6 +6,10 @@ $errors = [];
 $success = '';
 $message = '';
 $users = new Users($pdo);
+$profile_user_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$friendship = new Friendship($pdo);
+$friendship = new Friendship($pdo);
+$isFriend = $friendship->isFriend($_SESSION['user_id'], $profile_user_id);
 $user_list = $users->getUsers();
 ?>
 <section id="section">
@@ -30,20 +34,23 @@ $user_list = $users->getUsers();
                     <div class="row-mt-1 mb-1">
                         <div class="col-12 col-md-10 offset-md-1">
                             <?php if (!empty($errors)) { ?>
-                                <div class="alert custom-bg-danger mt-2 mb-3 p-2">
+                                <div class="alert auto-dismiss custom-bg-danger mt-2 mb-3 p-2" role="alert">
                                     <?php foreach ($errors as $error) { ?>
                                         <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                                        <button type="button" class="close-alert gradient-text-danger float-end" aria-label="Close">&times;</button>
                                     <?php } ?>
                                 </div>
                             <?php } ?>
                             <?php if (!empty($success)) { ?>
-                                <div class="alert custom-bg-success mt-2 mb-3 p-2">
+                                <div class="alert auto-dismiss custom-bg-success mt-2 mb-3 p-2" role="alert">
                                     <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
+                                    <button type="button" class="close-alert gradient-text-danger float-end" aria-label="Close">&times;</button>
                                 </div>
                             <?php } ?>
                             <?php if (!empty($message)) { ?>
-                                <div class="alert custom-bg-info mt-2 mb-3 p-2">
+                                <div class="alert alert-dismiss custom-bg-info mt-2 mb-3 p-2" role="alert">
                                     <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
+                                    <button type="button" class="close-alert gradient-text-danger float-end" aria-label="Close">&times;</button>
                                 </div>
                             <?php } ?>
                         </div>
@@ -77,7 +84,7 @@ $user_list = $users->getUsers();
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-sm text-white p-1 mt-1"><?= htmlspecialchars($user['dob'] ?? ''); ?></td>
+                                        <td class="text-sm text-white p-1 mt-1"><?= htmlspecialchars($user['dob'] ?? date('01-01-1970')); ?></td>
                                         <td class="text-sm text-white p-1 mt-1"><?= htmlspecialchars($user['role'] ?? ''); ?></td>
                                         <td class="text-sm text-white p-1 mt-1"><?= htmlspecialchars($user['username'] ?? ''); ?></td>
 
@@ -100,7 +107,7 @@ $user_list = $users->getUsers();
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-sm text-white p-1 mt-1"><?= truncate_words(htmlspecialchars($user['bio'] ?? ''), 5); ?></td>
+                                        <td class="text-sm text-white p-1 mt-1 ql-viewer"><?= nl2br(truncate_words($user['bio'] ?? ''), 5); ?></td>
                                         <td class="d-inline p-1 mt-1">
                                             <div class="btn-group-sm">
                                                 <a href="profile.php?id=<?= htmlspecialchars($user['id']); ?>" data-bs-toggle="tooltip" data-bs-original-title="Preview user with the id:<?= htmlspecialchars($user['id']); ?>" class="btn circle-12-rounded custom-bg-info">
@@ -138,4 +145,40 @@ $user_list = $users->getUsers();
     </div>
 </div>
 </section>
+<script>
+    document.getElementById('friendBtn').addEventListener('click', function () {
+        const button = this;
+        const friendId = button.dataset.friendId;
+        const action = button.dataset.action;
+
+        fetch('includes/process_friendship.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                friend_id: friendId,
+                action: action
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    if (action === 'add') {
+                        button.textContent = 'Remove Friend';
+                        button.classList.remove('custom-bg-info');
+                        button.classList.add('custom-bg-danger');
+                        button.classList.add('fa-solid fa-user-minus');
+                        button.dataset.action = 'remove';
+                    } else {
+                        button.textContent = 'Add Friend';
+                        button.classList.remove('custom-bg-danger');
+                        button.classList.add('custom-bg-info');
+                        button.classList.add('fa-solid fa-user-plus');
+                        button.dataset.action = 'add';
+                    }
+                } else {
+                    alert('Friendship action failed.');
+                }
+            });
+    });
+</script>
 <?php include("includes/foot.php"); ?>

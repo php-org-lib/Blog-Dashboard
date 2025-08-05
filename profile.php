@@ -8,22 +8,20 @@ $message = '';
 $users = new Users($pdo);
 $userId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if (!isset($_SESSION['user_id'])) {
-    redirect('login.php');
     $message = "You must be logged in to view this page.";
-    echo $message;
+    redirect('login.php');
 }
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['username'];
 $email = $_SESSION['email'];
 if (!$userId) {
-    redirect('index.php');
     $errors[] = 'Sorry, there was an error. Please try again.';
+    redirect('index.php');
 } else {
     $us = $users->getUserById($userId);
     $posts = $users->getPostsByUserId($userId);
     if (empty($posts)) {
         $posts = [];
-        $message = 'Sorry, there are no posts made yet.';
     }
     if (empty($us)) {
         $us = null;
@@ -31,27 +29,32 @@ if (!$userId) {
         redirect('login.php');
     }
 }
-
+$profile_user_id = $userId;
+$request = new FriendRequest($pdo);
+$isFriend = $request->isFriends($_SESSION['user_id'], $profile_user_id);
 ?>
 <section id="section">
     <div class="container-fluid py-1">
         <div class="row-mt-1 mb-1">
             <div class="col-12 col-md-10 offset-md-1">
                 <?php if (!empty($errors)) { ?>
-                    <div class="alert custom-bg-danger mt-2 mb-3 p-2">
+                    <div class="alert auto-dismiss custom-bg-danger mt-2 mb-3 p-2" role="alert">
                         <?php foreach ($errors as $error) { ?>
                             <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                            <button class="close-alert text-danger float-end" aria-label="Close">&times;</button>
                         <?php } ?>
                     </div>
                 <?php } ?>
                 <?php if (!empty($success)) { ?>
-                    <div class="alert custom-bg-success mt-2 mb-3 p-2">
+                    <div class="alert auto-dismiss custom-bg-success mt-2 mb-3 p-2" role="alert">
                         <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
+                        <button class="close-alert text-danger float-end" aria-label="Close">&times;</button>
                     </div>
                 <?php } ?>
                 <?php if (!empty($message)) { ?>
-                    <div class="alert custom-bg-info mt-2 mb-3 p-2">
+                    <div class="alert alert-dismiss custom-bg-info mt-2 mb-3 p-2" role="alert">
                         <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
+                        <button class="close-alert text-danger float-end" aria-label="Close">&times;</button>
                     </div>
                 <?php } ?>
             </div>
@@ -120,6 +123,11 @@ if (!$userId) {
                         <hr class="horizontal info-horizontal horizontal-line-info">
                         <div class="mt-1 mb-2">
                             <h2 class="text-dm-sans-bold gradient-text-info"><?= htmlspecialchars($us['full_name'] ?? '') ?></h2>
+                            <?php if (!$isFriend && $profile_user_id !== $_SESSION['user_id'] ): ?>
+                                <button id="sendRequestBtn" data-receiver="<?= $profile_user_id ?>" class="btn custom-bg-primary text-white text-dm-sans-bold">
+                                    Send Friend Request
+                                </button>
+                            <?php endif; ?>
                         </div>
                         <div class="mt-1 mb-2">
                             <div class="p-1">
@@ -179,5 +187,23 @@ if (!$userId) {
         showSelectedPost(select.value);
     });
 </script>
+<script>
+    document.getElementById('sendRequestBtn')?.addEventListener('click', function () {
+        const receiver = this.dataset.receiver;
+        fetch('includes/process_friend_request.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams({ action: 'send', receiver_id: receiver })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    this.textContent = 'Request Sent';
+                    this.disabled = true;
+                }
+            });
+    });
+</script>
+
 <?php include('includes/foot.php'); ?>
 

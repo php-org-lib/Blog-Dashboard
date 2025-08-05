@@ -6,6 +6,7 @@ require_once __DIR__ . '/config/classes/users.php';
 require_once __DIR__ . '/config/classes/posts.php';
 require_once __DIR__ . '/config/classes/comments.php';
 require_once __DIR__ . '/config/classes/friendships.php';
+require_once __DIR__ . '/config/classes/friendrequest.php';
 spl_autoload_register(function ($className) {
     $file = __DIR__ . '/classes/' . $className . '.php';
     if (file_exists($file)) {

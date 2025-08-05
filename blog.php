@@ -6,6 +6,9 @@ if (!isset($_SESSION['user_id'])) {
     redirect('login.php');
     echo "You are not logged in. Please login to view this page.";
 }
+$message = '';
+$success = '';
+$errors = [];
 $users = new Users($pdo);
 $posts = new Posts($pdo);
 $user_id = $_SESSION['user_id'];
@@ -28,6 +31,30 @@ $post_count = count($post_list);
                         </div>
                     </div>
                     <div class="card-body p-3 position-relative">
+                        <div class="row-mt-1 mb-1">
+                            <div class="col-12 col-md-10 offset-md-1">
+                                <?php if (!empty($errors)) { ?>
+                                    <div class="alert auto-dismiss custom-bg-danger mt-2 mb-3 p-2" role="alert">
+                                        <?php foreach ($errors as $error) { ?>
+                                            <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                                            <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                <?php if (!empty($success)) { ?>
+                                    <div class="alert auto-dismiss custom-bg-success mt-2 mb-3 p-2" role="alert">
+                                        <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
+                                        <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
+                                    </div>
+                                <?php } ?>
+                                <?php if (!empty($message)) { ?>
+                                    <div class="alert alert-dismiss custom-bg-info mt-2 mb-3 p-2" role="alert">
+                                        <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
+                                        <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-12 col-md-2">
                                 <div class="row">

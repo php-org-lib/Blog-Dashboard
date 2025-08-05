@@ -2,6 +2,9 @@
 global $pdo;
 require_once __DIR__ . '/autoload.php';
 include("includes/head.php");
+$message = "";
+$success = "";
+$errors = [];
 $users = new Users($pdo);
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
@@ -28,8 +31,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container-fluid py-1 mt-3 mb-3">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 py-5 login-form">
-            <div class="card custom-bg-dark border border-primary shadow-xl shadow-primary login-card">
-               <div class="card-header custom-bg-dark">
+            <div class="card custom-bg-dark border border-info shadow-xl login-card">
+               <div class="card-header custom-bg-dark" style="display: flex; justify-content: space-between; align-items: center;">
                    <h1 class="text-dm-sans-bold gradient-text-info">Login</h1>
                    <div class="btn-group">
                        <a href="register.php" class="btn rounded btn-outline-success">Register</a>
@@ -39,20 +42,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="row-mt-1 mb-1">
                         <div class="col-12 col-md-10 offset-md-1">
                             <?php if (!empty($errors)) { ?>
-                                <div class="alert custom-bg-danger mt-2 mb-3 p-2">
+                                <div class="alert auto-dismiss custom-bg-danger mt-2 mb-3 p-2" role="alert">
                                     <?php foreach ($errors as $error) { ?>
                                         <p class="gradient-text-white text-ubuntu-bold"><?php echo $error; ?></p>
+                                        <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
                                     <?php } ?>
                                 </div>
                             <?php } ?>
                             <?php if (!empty($success)) { ?>
-                                <div class="alert custom-bg-success mt-2 mb-3 p-2">
+                                <div class="alert auto-dismiss custom-bg-success mt-2 mb-3 p-2" role="alert">
                                     <p class="gradient-text-white text-ubuntu-bold"><?php echo $success; ?></p>
+                                    <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
                                 </div>
                             <?php } ?>
                             <?php if (!empty($message)) { ?>
-                                <div class="alert custom-bg-info mt-2 mb-3 p-2">
+                                <div class="alert alert-dismiss custom-bg-info mt-2 mb-3 p-2" role="alert">
                                     <p class="gradient-text-white text-ubuntu-bold"><?php echo $message; ?></p>
+                                    <button type="button" class="close-alert text-danger float-end" aria-label="Close">&times;</button>
                                 </div>
                             <?php } ?>
                         </div>
@@ -60,14 +66,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form action="" method="POST" class="form">
                         <div class="form-group m-2">
                             <label for="email" class="text-ubuntu-bold gradient-text-primary">Email</label>
-                            <input type="email" name="email" class="form-control color-background custom-bg-dark border border-primary text-dm-sans-bold text-white" id="email" required>
+                            <input type="email" name="email" class="form-control color-background custom-bg-dark border border-info text-dm-sans-bold text-white" id="email" required>
                         </div>
                         <div class="form-group input-group m-2">
                             <label for="password" class="text-ubuntu-bold gradient-text-primary">Password</label>
-                            <input type="password" name="password" id="password" class="form-control color-background custom-bg-dark border border-primary text-dm-sans-bold text-white" required>
+                            <input type="password" name="password" id="password" class="form-control color-background custom-bg-dark border border-info text-dm-sans-bold text-white" required>
                             <i class="fa-solid fa-eye toggle-password" data-target="password"></i>
                         </div>
-                        <div class="py-1 mt-3 mb-3">
+                        <div class="mt-3 m-2 p-1">
                             <input type="submit" value="Login" class="btn custom-bg-primary text-dm-sans-bold text-white btn-block w-100">
                         </div>
                     </form>

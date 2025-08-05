@@ -10,7 +10,12 @@ if(isset($_SESSION['user_id'])) {
 } else {
     $message = 'You are not logged in';
 }
-
+$notificationCount = 0;
+if (isset($_SESSION['user_id'])) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM friend_requests WHERE receiver_id = ? AND status = 'pending'");
+    $stmt->execute([$_SESSION['user_id']]);
+    $notificationCount = $stmt->fetchColumn();
+}
 
 ?>
 <!DOCTYPE html>
@@ -215,60 +220,19 @@ if(isset($_SESSION['user_id'])) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="javascript:;" class="nav-link py-0 px-1 line-height-0">
-                            <i class="material-symbols-rounded fixed-plugin-button-nav">
-                                settings
-                            </i>
+                        <a href="../friend_list.php" class="nav-link py-0 px-1 line-height-0" data-bs-original-title="Friend List" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Friend List">
+                            <i class="fa-solid fa-users gradient-text-success"></i>
                         </a>
                     </li>
-                    <li class="nav-item dropdown py-0 pe-3">
-                        <a href="javascript:;" class="nav-link py-0 px-1 position-relative line-height-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="material-symbols-rounded">
-                                notifications
-                            </i>
-                            <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger border border-white small py-1 px-2">
-                  <span class="small">11</span>
-                  <span class="visually-hidden">unread notifications</span>
-                </span>
+                    <li class="nav-item dropdown py-0 pe-3 position-relative">
+                        <a class="nav-link py-0 px-1 position-relative line-height-0 text-white" id="notificationsBtn" href="../notifications.php">
+                            <i class="fa-solid fa-bell gradient-text-info"></i>
+                            <?php if ($notificationCount > 0): ?>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gradient-warning">
+                                    <span class="text-white text-dm-sans-bold"><?= $notificationCount ?></span>
+                                </span>
+                            <?php endif; ?>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end p-2 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="javascript:;">
-                                    <div class="d-flex align-items-center py-1">
-                                        <span class="material-symbols-rounded">email</span>
-                                        <div class="ms-2">
-                                            <h6 class="text-sm font-weight-normal my-auto">
-                                                Check new messages
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="javascript:;">
-                                    <div class="d-flex align-items-center py-1">
-                                        <span class="material-symbols-rounded">podcasts</span>
-                                        <div class="ms-2">
-                                            <h6 class="text-sm font-weight-normal my-auto">
-                                                Manage podcast session
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item border-radius-md" href="javascript:;">
-                                    <div class="d-flex align-items-center py-1">
-                                        <span class="material-symbols-rounded">shopping_cart</span>
-                                        <div class="ms-2">
-                                            <h6 class="text-sm font-weight-normal my-auto">
-                                                Payment successfully completed
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
