@@ -189,6 +189,34 @@ class Users
         }
     }
 
+    public function getUsersYouCanAddAsFriends(int $currentUserId): array {
+        try {
+            $sql = "
+            SELECT u.id, u.username, u.full_name, u.avatar, u.email
+            FROM users u
+            WHERE u.id != :currentUserId
+              AND u.id NOT IN (
+                SELECT receiver_id FROM friend_requests WHERE sender_id = :currentUserId1 AND status IN ('accepted', 'pending')
+                UNION
+                SELECT sender_id FROM friend_requests WHERE receiver_id = :currentUserId2 AND status IN ('accepted', 'pending')
+              )
+        ";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                'currentUserId' => $currentUserId,
+                'currentUserId1' => $currentUserId,
+                'currentUserId2' => $currentUserId
+            ]);
+
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("getUsersYouCanAddAsFriends Error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+
     public static function getSessionUserId()
     {
         $user_id = $_SESSION['user_id'];

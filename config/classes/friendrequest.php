@@ -52,4 +52,5 @@ class FriendRequest {
         $stmt->execute([$user_id, $user_id]);
         return $stmt->fetchAll();
     }
+
 }
